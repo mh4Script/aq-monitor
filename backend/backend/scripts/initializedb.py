@@ -16,6 +16,7 @@ from ..models import (
     get_tm_session,
     )
 from backend.models.airdata import AirData
+from backend.models.userdata import UserData
 
 
 def usage(argv):
@@ -40,12 +41,45 @@ def main(argv=sys.argv):
 
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
-
-        new_airdata = AirData(
-            airdata_gps_location = '123,456',
-            airdata_co2 = 1.222,
-            airdata_pm25 = 1.232,
-            airdata_pm10 = 1.234,
-            airdata_temperature = '12 c'
+        
+        raw_airdata =[
+            {
+                'airdata_gps_location': '123,456',
+                'airdata_co2': 1.222,
+                'airdata_pm25': 1.232,
+                'airdata_pm10': 1.234,
+                'airdata_temperature': '12 c'
+            },
+            {
+                'airdata_gps_location': '133,456',
+                'airdata_co2': 1.222,
+                'airdata_pm25': 1.232,
+                'airdata_pm10': 1.234,
+                'airdata_temperature': '32 c'
+            },
+            {
+                'airdata_gps_location': '1223,1456',
+                'airdata_co2': 1.222,
+                'airdata_pm25': 1.232,
+                'airdata_pm10': 1.234,
+                'airdata_temperature': '32 c'
+            },
+        ]
+        
+        default_airdata = []
+        for row in raw_airdata:
+            default_airdata.append(AirData(
+                airdata_gps_location = row['airdata_gps_location'],
+                airdata_co2 = row['airdata_co2'],
+                airdata_pm25 = row['airdata_pm25'],
+                airdata_pm10 = row['airdata_pm10'],
+                airdata_temperature = row['airdata_temperature'],
+            ))
+        dbsession.add_all(default_airdata)
+        
+        default_userdata = UserData(
+            userdata_name = 'jhon doe',
+            userdata_email = 'jhon.doe@gmail.com',
+            userdata_wa = '1234444',
         )
-        dbsession.add(new_airdata)
+        dbsession.add(default_userdata)
