@@ -15,7 +15,7 @@ from ..models import (
     get_session_factory,
     get_tm_session,
     )
-from ..models import MyModel
+from backend.models.airdata import AirData
 
 
 def usage(argv):
@@ -41,5 +41,11 @@ def main(argv=sys.argv):
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
-        model = MyModel(name='one', value=1)
-        dbsession.add(model)
+        new_airdata = AirData(
+            airdata_gps_location = '123,456',
+            airdata_co2 = 1.222,
+            airdata_pm25 = 1.232,
+            airdata_pm10 = 1.234,
+            airdata_temperature = '12 c'
+        )
+        dbsession.add(new_airdata)
