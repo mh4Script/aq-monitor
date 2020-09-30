@@ -12,6 +12,8 @@ class AirQualityDataView(object):
         result = []
         for row in data:
             result.append({
+                'airdata_device': row.airdata_device,
+                'airdata_building': row.airdata_building,
                 'airdata_gps_location': row.airdata_gps_location,
                 'airdata_co2': row.airdata_co2,
                 'airdata_pm25': row.airdata_pm25,

@@ -7,9 +7,14 @@ from backend.models import (
     get_tm_session,
 )
 from backend.models.airdata import AirData
+from backend.models.constanta import (
+    CO2_HEALTH_THRESHOLD,
+    PM25_HEALTH_THRESHOLD,
+    PM10_HEALTH_THRESHOLD
+)
 
 def get_co2():
-    return randint(0, 10)
+    return randint(0, 5)
 
 def get_pm25():
     return randint(0, 5)
@@ -44,3 +49,8 @@ def set_new_data(get_data_from_device, device, settings):
             AirData.airdata_temperature: new_data['airdata_temperature'],
             AirData.airdata_device: new_data['airdata_device']
         })
+
+def check_health_threshold():
+    # check health treshold every 1 minute
+    # this will mock function to measure the air health threshold
+    pass

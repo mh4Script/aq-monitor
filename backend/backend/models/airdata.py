@@ -18,6 +18,7 @@ class AirData(Base):
     airdata_pm10 = Column(Float)
     airdata_temperature = Column(String(5))
     airdata_device = Column(String(5), index=True)
+    airdata_building = Column(String(50), index=True)
 
 
-Index('airdata_gps_location_index', AirData.airdata_gps_location, AirData.airdata_device)
+Index('airdata_gps_location_index', AirData.airdata_gps_location, AirData.airdata_device, AirData.airdata_building)

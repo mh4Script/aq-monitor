@@ -29,7 +29,6 @@ def usage(argv):
 def main(argv=sys.argv):
     if len(argv) < 2:
         usage(argv)
-    import pdb;pdb.set_trace()
     config_uri = argv[1]
     options = parse_vars(argv[2:])
     setup_logging(config_uri)
@@ -50,6 +49,7 @@ def main(argv=sys.argv):
                 'airdata_pm25': 1.232,
                 'airdata_pm10': 1.234,
                 'airdata_temperature': '12 c',
+                'airdata_building': 'building A',
                 'airdata_device': 'A'
             },
             {
@@ -58,6 +58,7 @@ def main(argv=sys.argv):
                 'airdata_pm25': 1.232,
                 'airdata_pm10': 1.234,
                 'airdata_temperature': '32 c',
+                'airdata_building': 'building B',
                 'airdata_device': 'B',
             },
             {
@@ -66,6 +67,7 @@ def main(argv=sys.argv):
                 'airdata_pm25': 1.232,
                 'airdata_pm10': 1.234,
                 'airdata_temperature': '32 c',
+                'airdata_building': 'building C',
                 'airdata_device': 'C'
             },
             {
@@ -74,6 +76,7 @@ def main(argv=sys.argv):
                 'airdata_pm25': 1.232,
                 'airdata_pm10': 1.234,
                 'airdata_temperature': '32 c',
+                'airdata_building': 'building D',
                 'airdata_device': 'D'
             },
         ]
@@ -87,6 +90,7 @@ def main(argv=sys.argv):
                 airdata_pm10 = row['airdata_pm10'],
                 airdata_temperature = row['airdata_temperature'],
                 airdata_device = row['airdata_device'],
+                airdata_building = row['airdata_building'],
         ))
         dbsession.add_all(default_airdata)
         

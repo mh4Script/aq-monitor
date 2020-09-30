@@ -2,12 +2,10 @@
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from backend.models.dummydatadevice import get_data_from_device, set_new_data
-
-DEVICES = ['A', 'B', 'C', 'D']
+from backend.models.constanta import DEVICES, UPDATE_DATA_SCHEDULE
 
 def update_data_from_device(scheduler, settings):
     for device in DEVICES:
-        new_data = get_data_from_device(device)
         jobid = 'updatedata_{}'.format(device)
         jobname = 'update data from device_{}'.format(device)
         scheduler.add_job(set_new_data,
@@ -15,7 +13,7 @@ def update_data_from_device(scheduler, settings):
             name=jobname,
             kwargs={'get_data_from_device': get_data_from_device, 'device': device, 'settings': settings},
             trigger='interval',
-            seconds = 5,
+            seconds = UPDATE_DATA_SCHEDULE,
         )
 
 def add_scheduler(settings):
