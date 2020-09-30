@@ -50,6 +50,18 @@ def set_new_data(get_data_from_device, device, settings):
             AirData.airdata_device: new_data['airdata_device']
         })
 
+def send_wa(number):
+    # TODO
+    pass
+
+def send_email(email):
+    # TODO
+    pass
+
+def send_notif(number='', email=''):
+    send_wa(number)
+    send_email(email)
+    
 def check_health_threshold():
     # check health treshold every 1 minute
     # this will create a mock function to measure the air health threshold
