@@ -17,7 +17,7 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
-    'python-crontab',
+    'apscheduler',
     ]
 
 tests_require = [

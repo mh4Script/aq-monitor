@@ -19,7 +19,3 @@ class AirQualityDataView(object):
                 'airdata_temperature': row.airdata_temperature
             })
         return {'result': result}
-
-    def update(self):
-        # TODO
-        return {'result': 'data updated'}

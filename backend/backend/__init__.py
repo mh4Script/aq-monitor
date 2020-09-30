@@ -1,4 +1,5 @@
 from pyramid.config import Configurator
+from backend.scripts.scheduler import add_scheduler
 
 
 def main(global_config, **settings):
@@ -8,4 +9,5 @@ def main(global_config, **settings):
     config.include('.models')
     config.include('.routes')
     config.scan()
+    add_scheduler(settings)
     return config.make_wsgi_app()
