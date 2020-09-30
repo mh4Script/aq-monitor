@@ -52,5 +52,5 @@ def set_new_data(get_data_from_device, device, settings):
 
 def check_health_threshold():
     # check health treshold every 1 minute
-    # this will mock function to measure the air health threshold
+    # this will create a mock function to measure the air health threshold
     pass
